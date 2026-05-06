@@ -1,116 +1,60 @@
-/*
- * Converted from your QMK Configurator JSON (ferris/sweep LAYOUT_split_3x5_2)
- * and expanded to a 36-key (3x5 + 3 thumbs per side) layout.
- *
- * Additions requested:
- *  - Base layer: add Caps Lock on LEFT thumb cluster after TAB.
- *  - Base layer: add Print Screen on RIGHT thumb cluster after ENTER.
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-  keymap {
-    compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-    /*
-     * Binding order assumption for 36 keys:
-     *  - 30 main keys: 3 rows of 10 (5L + 5R)
-     *  - 6 thumbs: L(3) then R(3)
-     *    Left thumbs:  [thumb1, thumb2, thumb3]
-     *    Right thumbs: [thumb1, thumb2, thumb3]
-     */
+        default_layer {
+            display-name = "BASE";
+            bindings = <
+                &kp Q    &kp D      &kp R       &kp W       &kp B         &kp J    &kp F       &kp U       &kp P      &kp SQT
+                &kp A    &mt LALT S &mt LSHFT H &mt LCTRL T &kp G         &kp Y    &mt RCTRL N &mt RSHFT E &mt RALT O &kp I
+                &kp Z    &kp X      &kp M       &kp C       &kp V         &kp K    &kp L       &kp COMMA   &kp DOT    &kp FSLH
+                                    &kp BSPC    &kp TAB     &kp CLCK      &kp PSCRN &kp RET    &kp SPACE
+            >;
+        };
 
-    default_layer {
-	// -----------------------------------------------------------------------------------------
-// |  Q  |  D  |  R  |  W  |  B  |   |  J  |  F  |  U  |  P  |  '  |
-// |  A  |  ALT-S  |  SHFT-H  |  LCTRL-T  |  G  |   |  Y  |  RCTRL-N  |  SHFT-E  |  O  |  I  |
-// |  Z  |  X  |  M  |  C  |  V  |   |  K  |  L  |  ,  |  .  |  /  |
-//                    | BSPC | TAB | CAPS |   | PSCR | RET | SPACE |
-      display-name = "BASE";
-      bindings = <
-        /* Row 1 */
-        &kp Q     &kp D     &kp R     &kp W     &kp B        &kp J     &kp F     &kp U     &kp P     &kp SQT
-        /* Row 2 */
-        &kp A     &mt LALT S &mt LSHFT H &mt LCTRL T &kp G     &kp Y     &mt RCTRL N &mt RSHFT E &mt RALT O &kp I
-        /* Row 3 */
-        &kp Z     &kp X     &kp M     &kp C     &kp V        &kp K     &kp L     &kp COMMA &kp DOT   &kp FSLH
-        /* Thumbs: left 3, right 3 */
-        &kp BSPC  &kp TAB   &kp CLCK    &kp PSCRN  &kp RET  &kp SPACE
-      >;
+        layer_1 {
+            display-name = "L1";
+            bindings = <
+                &kp LBKT  &kp N7    &kp N8      &kp N9      &kp RBKT      &none    &none       &none       &none      &none
+                &kp SEMI  &kp N4    &kp N5      &kp N6      &kp EQUAL     &none    &kp LCTRL   &kp RSHFT   &kp LALT   &none
+                &kp GRAVE &kp N1    &kp N2      &kp N3      &kp BSLH      &none    &none       &none       &none      &none
+                                    &kp N0      &kp MINUS   &none         &none    &none       &mo 2
+            >;
+        };
+
+        layer_2 {
+            display-name = "L2";
+            bindings = <
+                &kp LBRC  &kp AMPS  &kp STAR    &kp LPAR    &kp RBRC      &none    &none       &none       &none      &none
+                &kp COLON &kp DLLR  &kp PRCNT   &kp CARET   &kp PLUS      &none    &kp LCTRL   &kp RSHFT   &kp LALT   &none
+                &kp TILDE &kp EXCL  &kp AT      &kp HASH    &kp PIPE      &none    &none       &none       &none      &none
+                                    &none       &none       &mo 3         &none    &none       &none
+            >;
+        };
+
+        layer_3 {
+            display-name = "L3";
+            bindings = <
+                &kp F12   &kp F7    &kp F8      &kp F9      &kp PSCRN     &none    &none       &none       &none      &none
+                &kp F11   &kp F4    &kp F5      &kp F6      &none         &kp CLCK &kp LEFT    &kp DOWN    &kp UP     &kp RIGHT
+                &kp F10   &kp F1    &kp F2      &kp F3      &none         &kp INS  &kp HOME    &kp PG_DN   &kp PG_UP  &kp END
+                                    &mo 4       &none       &none         &kp ESC  &none       &kp DEL
+            >;
+        };
+
+        layer_4 {
+            display-name = "L4";
+            bindings = <
+                &none     &kp COLON &kp LT      &kp GT      &kp SEMI      &kp LSHFT &kp RSHFT  &kp C_VOL_DN &kp C_VOL_UP &none
+                &kp LBRC  &kp RBRC  &kp LPAR    &kp RPAR    &kp AT        &kp C_MUTE &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT
+                &none     &kp EXCL  &kp LBKT    &kp RBKT    &none         &mkp MCLK &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT
+                                    &kp C_VOL_DN &mo 4      &none         &mkp RCLK &none      &kp C_VOL_UP
+            >;
+        };
     };
-
-    layer_1 {
-	// -----------------------------------------------------------------------------------------
-// |  [  |  7  |  8  |  9  |  ]  |   |
-// |  ;  |  4  |  5  |  6  |  =  |   |  NONE  |  LCTRL  |  LSHFT  |  LALT  |
-// |  `  |  1  |  2  |  3  |  \  |   |
-// |  0  |  -  |
-      display-name = "L1";
-      bindings = <
-        /* Row 1 */
-        &kp LBKT  &kp N7    &kp N8    &kp N9    &kp RBKT     &none     &none     &none     &none     &none
-        /* Row 2 */
-        &kp SEMI  &kp N4    &kp N5    &kp N6    &kp EQUAL    &none     &kp LCTRL &kp RSHFT &kp LALT &none
-        /* Row 3 */
-        &kp GRAVE &kp N1    &kp N2    &kp N3    &kp BSLH      &none     &none     &none     &none     &none
-        /* Thumbs (expanded): old L1,L2,R1,R2 preserved; new thumb slots are &none */
-        &kp N0    &kp MINUS &none       &none     &none      &mo 1
-      >;
-    };
-
-    layer_2 {
-	// -----------------------------------------------------------------------------------------
-// |  {  |  &  |  *  |  (  |  }  |   |
-// |  :  |  $  |  %  |  ^  |  +  |   |  NONE  |  LCTRL  |  LSHFT  |  LALT  |
-// |  ~  |  !  |  @  |  #  |  |  |   |
-// |  0  |  -  |
-      display-name = "L2";
-      bindings = <
-        /* Row 1 */
-        &kp LBRC  &kp AMPS  &kp ASTRK &kp LPAR  &kp RBRC     &none     &none     &none     &none     &none
-        /* Row 2 */
-        &kp COLON &kp DLLR  &kp PRCNT &kp CARET &kp PLUS     &none     &kp LCTRL &kp RSHFT &kp LALT &none
-        /* Row 3 */
-        &kp TILDE &kp EXCL  &kp AT    &kp HASH  &kp PIPE     &none     &none     &none     &none     &none
-        /* Thumbs */
-        &none     &none     &mo 2      &none     &none      &none
-      >;
-    };
-
-    layer_3 {
-	// -----------------------------------------------------------------------------------------
-// |  F12  |  F7  |  F8  |  F9  |  PSCRN  |   |
-// |  F11  |  F4  |  F5  |  F6  |  NONE  |   |  NONE  |  LCTRL  |  LSHFT  |  LALT  |
-// |  F10  |  F1  |  F2  |  F3  |  NONE  |   |  INS   |  HOME   |  PG_DN  |  PG_UP |  END  |
-// |    |  NONE  |  NONE  |   |  NONE  |  ESC  |  DEL  
-      display-name = "L3";
-      bindings = <
-        /* Row 1 */
-        &kp F12   &kp F7    &kp F8    &kp F9    &kp PSCRN    &none     &none     &none     &none     &none
-        /* Row 2 */
-        &kp F11   &kp F4    &kp F5    &kp F6    &none        &kp CLCK  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT
-        /* Row 3 */
-        &kp F10   &kp F1    &kp F2    &kp F3    &none        &kp INS   &kp HOME  &kp PG_DN &kp PG_UP &kp END
-        /* Thumbs */
-        &mo 3     &none     &none       &kp ESC  &none      &kp DEL
-      >;
-    };
-
-    layer_4 {
-      display-name = "L4";
-      bindings = <
-        /* Row 1 */
-        &none     &kp COLON &kp LT    &kp GT    &kp SEMI     &kp LSHFT &kp RSHFT &kp C_VOL_DN &kp C_VOL_UP &none
-        /* Row 2 */
-        &kp LBRC  &kp RBRC  &kp LPAR  &kp RPAR  &kp AT       &kp C_MUTE &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT
-        /* Row 3 */
-        &none     &kp EXCL  &kp LBKT  &kp RBKT  &none        &mkp MCLK   &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT
-        /* Thumbs */
-        &kp C_VOL_DN &mo 4  &none       &mkp RCLK &none     &kp C_VOL_UP
-      >;
-    };
-  };
 };
+
