@@ -1,14 +1,5 @@
-jobs:
-  build:
-    steps:
-      - name: Build
-        uses: zmkfirmware/zmk-build-action@v1
-        with:
-          board: nice_nano_v2  # Or your specific controller
-          shield: chocofi_left
-      - name: Build Right
-        uses: zmkfirmware/zmk-build-action@v1
-        with:
-          board: nice_nano_v2
-          shield: chocofi_right
-
+include:
+  - board: nice_nano_v2
+    shield: chocofi_left
+  - board: nice_nano_v2
+    shield: chocofi_right
